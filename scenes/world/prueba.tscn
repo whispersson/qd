@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8ajorsbknthp"]
+
+[ext_resource type="PackedScene" uid="uid://dxielvjxxertn" path="res://casa.tscn" id="1_mt5rx"]
+[ext_resource type="PackedScene" uid="uid://ch3g5bpe52qa3" path="res://Vera.tscn" id="2_rcdd3"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Casa" parent="." instance=ExtResource("1_mt5rx")]
+position = Vector2(96, 33)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_rcdd3")]
+position = Vector2(321, 148)
