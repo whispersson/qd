@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8ajorsbknthp"]
 
-[ext_resource type="PackedScene" uid="uid://dxielvjxxertn" path="res://casa.tscn" id="1_mt5rx"]
-[ext_resource type="PackedScene" uid="uid://ch3g5bpe52qa3" path="res://Vera.tscn" id="2_rcdd3"]
+[ext_resource type="PackedScene" uid="uid://c6w4sg6k1v34c" path="res://scenes/world/casa.tscn" id="1_mt5rx"]
+[ext_resource type="PackedScene" uid="uid://ch3g5bpe52qa3" path="res://scenes/characters/Vera.tscn" id="2_rcdd3"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Casa" parent="." instance=ExtResource("1_mt5rx")]
-position = Vector2(96, 33)
+position = Vector2(36, 34)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_rcdd3")]
-position = Vector2(321, 148)
+position = Vector2(316, 149)

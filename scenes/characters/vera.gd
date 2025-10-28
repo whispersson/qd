@@ -1,34 +1,46 @@
 extends CharacterBody2D
 
-@export var speed: float = 100.0
+@export var speed: float = 70.0
 @onready var anim = $AnimatedSprite2D
 var last_direction := "down"
 
 func _physics_process(_delta):
 	var input_vector = Vector2.ZERO
 
-	input_vector.x = Input.get_action_strength("dch") - Input.get_action_strength("izq")
-	input_vector.y = Input.get_action_strength("abj") - Input.get_action_strength("arb")
-	input_vector = input_vector.normalized()
+	var move_x = Input.get_action_strength("dch") - Input.get_action_strength("izq")
+	var move_y = Input.get_action_strength("abj") - Input.get_action_strength("arb")
+
+	if move_x != 0:
+		move_y = 0
+	elif move_y != 0:
+		move_x = 0
+
+	input_vector.x = move_x
+	input_vector.y = move_y
 
 	velocity = input_vector * speed
 	move_and_slide()
 
+	# --- Animaciones ---
 	if input_vector != Vector2.ZERO:
-		if abs(input_vector.x) > abs(input_vector.y):
-			anim.play("walk rl")
-			anim.flip_h = input_vector.x < 0
-			last_direction = "rl"
+		if input_vector.x > 0:
+			anim.play("walk right")
+			last_direction = "right"
+		elif input_vector.x < 0:
+			anim.play("walk left")
+			last_direction = "left"
 		elif input_vector.y < 0:
 			anim.play("walk top")
 			last_direction = "top"
-		else:
+		elif input_vector.y > 0:
 			anim.play("walk down")
 			last_direction = "down"
 	else:
 		match last_direction:
-			"rl":
-				anim.play("idle rl")
+			"right":
+				anim.play("idle right")
+			"left":
+				anim.play("idle left")
 			"top":
 				anim.play("idle top")
 			"down":
