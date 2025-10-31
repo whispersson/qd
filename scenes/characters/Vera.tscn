@@ -1,10 +1,11 @@
-[gd_scene load_steps=56 format=3 uid="uid://ch3g5bpe52qa3"]
+[gd_scene load_steps=57 format=3 uid="uid://ch3g5bpe52qa3"]
 
 [ext_resource type="Texture2D" uid="uid://demupikrmylom" path="res://assets/idle.png" id="1_1vs66"]
 [ext_resource type="Script" uid="uid://ilph6428q2nk" path="res://scenes/characters/vera.gd" id="1_y7ebi"]
 [ext_resource type="Texture2D" uid="uid://0tst04yfjdok" path="res://assets/run.png" id="3_e2bjc"]
 [ext_resource type="Texture2D" uid="uid://b04d3ftdac3dc" path="res://assets/image.png" id="3_ndgju"]
 [ext_resource type="Texture2D" uid="uid://cry86wr7dt16x" path="res://assets/image (1).png" id="5_k7u6a"]
+[ext_resource type="Texture2D" uid="uid://c33vm5ttqgj13" path="res://assets/light.png" id="6_k7u6a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wvk7j"]
 atlas = ExtResource("1_1vs66")
@@ -404,3 +405,20 @@ shape = SubResource("RectangleShape2D_dbj76")
 position = Vector2(-2, 1)
 zoom = Vector2(5, 5)
 position_smoothing_enabled = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.835294, 0.835294, 0.835294, 1)
+energy = 0.5
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+texture = ExtResource("6_k7u6a")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+enabled = false
+color = Color(0.835294, 0.835294, 0.835294, 1)
+energy = 0.5
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+texture = ExtResource("6_k7u6a")
