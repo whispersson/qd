@@ -387,38 +387,40 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbj76"]
-size = Vector2(13, 4)
+size = Vector2(13, 6)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_y7ebi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 2
 sprite_frames = SubResource("SpriteFrames_vr5sc")
 animation = &"idle top"
 frame_progress = 0.517759
 
+[node name="PointLight2D2" type="PointLight2D" parent="AnimatedSprite2D"]
+position = Vector2(1, 5)
+color = Color(0.835294, 0.835294, 0.835294, 1)
+energy = 0.5
+range_item_cull_mask = 2
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+texture = ExtResource("6_k7u6a")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 5)
+position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_dbj76")
+
+[node name="PointLight2D" type="PointLight2D" parent="CollisionShape2D"]
+position = Vector2(0.5, 0.5)
+color = Color(0.835294, 0.835294, 0.835294, 1)
+energy = 0.5
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+texture = ExtResource("6_k7u6a")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-2, 1)
 zoom = Vector2(5, 5)
 position_smoothing_enabled = true
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.835294, 0.835294, 0.835294, 1)
-energy = 0.5
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 1.0
-texture = ExtResource("6_k7u6a")
-
-[node name="PointLight2D2" type="PointLight2D" parent="."]
-enabled = false
-color = Color(0.835294, 0.835294, 0.835294, 1)
-energy = 0.5
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 1.0
-texture = ExtResource("6_k7u6a")

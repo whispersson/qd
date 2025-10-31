@@ -19,22 +19,34 @@ func _physics_process(_delta):
 	input_vector.y = move_y
 
 	velocity = input_vector * speed
+	var prev_position = position
 	move_and_slide()
+	var moved_distance = position.distance_to(prev_position)
 
-	# --- Animaciones ---
 	if input_vector != Vector2.ZERO:
-		if input_vector.x > 0:
-			anim.play("walk right")
-			last_direction = "right"
-		elif input_vector.x < 0:
-			anim.play("walk left")
-			last_direction = "left"
-		elif input_vector.y < 0:
-			anim.play("walk top")
-			last_direction = "top"
-		elif input_vector.y > 0:
-			anim.play("walk down")
-			last_direction = "down"
+		if moved_distance < 0.5:
+			match last_direction:
+				"right":
+					anim.play("idle right")
+				"left":
+					anim.play("idle left")
+				"top":
+					anim.play("idle top")
+				"down":
+					anim.play("idle down")
+		else:
+			if input_vector.x > 0:
+				anim.play("walk right")
+				last_direction = "right"
+			elif input_vector.x < 0:
+				anim.play("walk left")
+				last_direction = "left"
+			elif input_vector.y < 0:
+				anim.play("walk top")
+				last_direction = "top"
+			elif input_vector.y > 0:
+				anim.play("walk down")
+				last_direction = "down"
 	else:
 		match last_direction:
 			"right":
