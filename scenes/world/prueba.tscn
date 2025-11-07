@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8ajorsbknthp"]
+[gd_scene load_steps=5 format=3 uid="uid://b8ajorsbknthp"]
 
 [ext_resource type="PackedScene" uid="uid://c6w4sg6k1v34c" path="res://scenes/world/casa.tscn" id="1_mt5rx"]
 [ext_resource type="PackedScene" uid="uid://ch3g5bpe52qa3" path="res://scenes/characters/Vera.tscn" id="2_rcdd3"]
+[ext_resource type="Script" uid="uid://baadhue1lyv81" path="res://scenes/world/puerta.gd" id="3_144sq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_135nb"]
+size = Vector2(6, 12)
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,9 +19,19 @@ color = Color(0.101961, 0.101961, 0.101961, 1)
 [node name="Casa" parent="." instance=ExtResource("1_mt5rx")]
 position = Vector2(36, 34)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_rcdd3")]
-position = Vector2(316, 76)
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(-2, 3)
 color = Color(0.537011, 0.537011, 0.537011, 1)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_rcdd3")]
+position = Vector2(400, 209)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_144sq")
+next_scene = "res://scenes/world/habitacion.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(386, 210)
+shape = SubResource("RectangleShape2D_135nb")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
